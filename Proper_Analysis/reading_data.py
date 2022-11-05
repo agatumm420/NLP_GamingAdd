@@ -13,3 +13,4 @@ df['GAD_score'] = df['GAD-7_Matrix_1'] + df['GAD-7_Matrix_2'] + df['GAD-7_Matrix
 df = df.drop(0)
 
 
+print(df)
