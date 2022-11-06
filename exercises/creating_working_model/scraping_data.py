@@ -19,6 +19,7 @@ soup = BeautifulSoup(r.content, 'html5lib')
 train_x = []
 train_y = []
 
+# Populating movies
 for x in soup.findAll('tr')[15:115]:
     for y in x:
         proper_y = str(y)
