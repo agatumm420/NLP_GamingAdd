@@ -22,15 +22,17 @@ model = AutoModel.from_pretrained(model_names["herbert-base-cased"]["model"])
 
 output = model(
     **tokenizer.batch_encode_plus(
-        [
-            (
-                'Uzależnienie'
-            )
-        ],
+        ['Uzależnienie'
+],
         padding="longest",
         add_special_tokens=True,
         return_tensors="pt",
     )
 )
 
-print(output)
+print(len(output.last_hidden_state))
+print(type(output.last_hidden_state))
+
+
+
+

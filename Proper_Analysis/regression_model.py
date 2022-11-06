@@ -4,7 +4,7 @@ from reading_data import df
 
 N = 20
 X_STRING = 'NLP_6'
-Y_STRING = 'GAD_score'
+Y_STRING = 'GDT_score'
 ACCEPTABLE_OFFSET = 2
 
 

@@ -14,3 +14,18 @@ df['PHQ_score'] = df['PHQ_Matrix_1'] + df['PHQ_Matrix_2'] + df['PHQ_Matrix_3'] +
                   df['PHQ_Matrix_5'] + df['PHQ_Matrix_6'] + df['PHQ_Matrix_7'] + df['PHQ_Matrix_8'] + \
                   df['PHQ_Matrix_9']
 df = df.drop(0)
+
+model_names = {
+    "herbert-klej-cased-v1": {
+        "tokenizer": "allegro/herbert-klej-cased-tokenizer-v1",
+        "model": "allegro/herbert-klej-cased-v1",
+    },
+    "herbert-base-cased": {
+        "tokenizer": "allegro/herbert-base-cased",
+        "model": "allegro/herbert-base-cased",
+    },
+    "herbert-large-cased": {
+        "tokenizer": "allegro/herbert-large-cased",
+        "model": "allegro/herbert-large-cased",
+    },
+}
