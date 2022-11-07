@@ -1,7 +1,7 @@
 import numpy as np
 from transformers import AutoTokenizer, AutoModel
 from sklearn import svm
-from reading_data import df, model_names
+from Proper_Analysis.reading_data import df, model_names
 
 N = 16
 X_STRING = 'NLP_6'
