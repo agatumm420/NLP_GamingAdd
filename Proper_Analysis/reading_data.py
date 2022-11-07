@@ -1,8 +1,11 @@
 import warnings
 import pandas as pd
+import os
+path = 'C:\\Users\\Lenovo\\Desktop\\GDT_NLP_Analysis'
+os.chdir(path)
 
 warnings.simplefilter("ignore")
-file_name = '../GDT_data.xlsx'
+file_name = 'GDT_data.xlsx'
 df = pd.read_excel(io=file_name)
 
 df['GDT_score'] = df['GDT_Matrix_1'] + df['GDT_Matrix_2'] + df['GDT_Matrix_3'] + df['GDT_Matrix_4']
