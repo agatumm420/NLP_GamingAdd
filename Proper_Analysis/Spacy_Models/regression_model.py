@@ -1,6 +1,7 @@
 import spacy
 from sklearn import svm
-from reading_data import df
+
+from Proper_Analysis.reading_data import df
 
 N = 20
 X_STRING = 'NLP_6'

@@ -16,7 +16,6 @@ y = df[Y_STRING]
 model_args = ClassificationArgs()
 model_args.num_train_epochs = 2
 model_args.regression = True
-model_args.learning_rate = 1e-4
 
 model = ClassificationModel(
     "herbert",
@@ -35,7 +34,7 @@ eval_df = pd.DataFrame({"text": x_test, "points": y_test})
 model.train_model(train_df)
 
 
-# result, model_outputs, wrong_predictions = model.eval_model(eval_df)
-#
-# print(result)
+result, model_outputs, wrong_predictions = model.eval_model(eval_df)
+
+print(result)
 

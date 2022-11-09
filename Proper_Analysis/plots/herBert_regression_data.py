@@ -3,8 +3,8 @@ from transformers import AutoTokenizer, AutoModel
 from sklearn import svm
 from Proper_Analysis.reading_data import model_names, df
 
-N = 0
-X_STRING = 'NLP_1'
+N = 20
+X_STRING = 'NLP_all'
 Y_STRING = 'GDT_score'
 ACCEPTABLE_OFFSET = 2
 

@@ -1,11 +1,11 @@
 import numpy as np
 from transformers import AutoTokenizer, AutoModel
 from sklearn import svm
-from reading_data import df, model_names
+from Proper_Analysis.reading_data import model_names, df
 
 N = 20
-X_STRING = 'NLP_6'
-Y_STRING = 'GAD_score'
+X_STRING = 'NLP_all'
+Y_STRING = 'GDT_score'
 ACCEPTABLE_OFFSET = 2
 
 tokenizer = AutoTokenizer.from_pretrained(model_names["herbert-base-cased"]["tokenizer"])
@@ -19,9 +19,11 @@ all_x = np.asarray([x.to_tuple()[0].detach().numpy() for x in docs])[0]
 n, x1, x2 = all_x.shape
 all_x_2d = all_x.reshape(n, x1 * x2)
 
+
 train_x = all_x_2d[N:]
 train_y = df[Y_STRING][N:]
 test_x = all_x_2d[:N]
+
 
 clf_svm_wv = svm.SVR(kernel="linear")
 clf_svm_wv.fit(train_x, train_y)
