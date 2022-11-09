@@ -9,6 +9,7 @@ Original file is located at
 
 import warnings
 import pandas as pd
+
 path = 'GDT_NLP_Analysis'
 
 warnings.simplefilter("ignore")
@@ -17,7 +18,7 @@ df = pd.read_excel(io=file_name)
 
 df['GDT_score'] = df['GDT_Matrix_1'] + df['GDT_Matrix_2'] + df['GDT_Matrix_3'] + df['GDT_Matrix_4']
 
-df['GAD_score'] = df['GAD-7_Matrix_1'] + df['GAD-7_Matrix_2'] + df['GAD-7_Matrix_3'] + df['GAD-7_Matrix_4']\
+df['GAD_score'] = df['GAD-7_Matrix_1'] + df['GAD-7_Matrix_2'] + df['GAD-7_Matrix_3'] + df['GAD-7_Matrix_4'] \
                   + df['GAD-7_Matrix_5'] + df['GAD-7_Matrix_6'] + df['GAD-7_Matrix_7']
 
 df['PHQ_score'] = df['PHQ_Matrix_1'] + df['PHQ_Matrix_2'] + df['PHQ_Matrix_3'] + df['PHQ_Matrix_4'] + \
@@ -28,11 +29,10 @@ df['NLP_all'] = None
 
 df = df.drop(0)
 
-
 for i in range(len(df['NLP_all'])):
     i = i + 1
-    df['NLP_all'][i] = f'{df["NLP_1"][i]} {df["NLP_2"][i]} {df["NLP_3"][i]} {df["NLP_4"][i]} {df["NLP_5"][i]} {df["NLP_6"][i]}'
-
+    df['NLP_all'][
+        i] = f'{df["NLP_1"][i]} {df["NLP_2"][i]} {df["NLP_3"][i]} {df["NLP_4"][i]} {df["NLP_5"][i]} {df["NLP_6"][i]}'
 
 model_names = {
     "herbert-klej-cased-v1": {
@@ -51,17 +51,16 @@ model_names = {
 
 import numpy as np
 
+
 def NormalizeData(data):
     return (data - np.min(data)) / (np.max(data) - np.min(data))
-  
+
+
 df['GDT_normalized'] = NormalizeData(df['GDT_score'])
 
 # ! pip install simpletransformers
 from simpletransformers.classification import ClassificationModel, ClassificationArgs
 import pandas as pd
-import logging
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 
 # ! pip install sacremoses
 
@@ -98,6 +97,6 @@ model.train_model(train_df)
 predictions, raw_outputs = model.predict(list(x_test))
 
 predictions = [round(item, 2) for item in predictions]
-y_answers = [round(item, 2 ) for item in y_answers]
+y_answers = [round(item, 2) for item in y_answers]
 for x, y in zip(predictions, list(y_answers)):
-  print(f'Predictions: {x}, answer: {y}')
+    print(f'Predictions: {x}, answer: {y}')

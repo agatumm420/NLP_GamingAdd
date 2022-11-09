@@ -1,6 +1,9 @@
 import warnings
 import pandas as pd
 import os
+
+from Proper_Analysis.helpers import connect_answers, normalize_dataset
+
 path = 'C:\\Users\\Lenovo\\Desktop\\GDT_NLP_Analysis'
 os.chdir(path)
 
@@ -19,13 +22,17 @@ df['PHQ_score'] = df['PHQ_Matrix_1'] + df['PHQ_Matrix_2'] + df['PHQ_Matrix_3'] +
 
 df['NLP_all'] = None
 
+df['NLP_gaming'] = None
+
+df['NLP_well_being'] = None
+
 df = df.drop(0)
 
+connect_answers(df['NLP_all'], df['NLP_1'], df['NLP_2'], df['NLP_3'], df['NLP_4'], df['NLP_5'], df['NLP_6'])
+connect_answers(df['NLP_gaming'], df['NLP_2'], df['NLP_3'], df['NLP_4'])
+connect_answers(df['NLP_well_being'], df['NLP_1'], df['NLP_2'])
 
-for i in range(len(df['NLP_all'])):
-    i = i + 1
-    df['NLP_all'][i] = f'{df["NLP_1"][i]} {df["NLP_2"][i]} {df["NLP_3"][i]} {df["NLP_4"][i]} {df["NLP_5"][i]} {df["NLP_6"][i]}'
-
+df['GDT_normalized'] = normalize_dataset(df['GDT_score'])
 
 model_names = {
     "herbert-klej-cased-v1": {
