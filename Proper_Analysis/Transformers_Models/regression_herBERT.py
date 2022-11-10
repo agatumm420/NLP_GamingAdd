@@ -1,11 +1,40 @@
 import numpy as np
 from transformers import AutoTokenizer, AutoModel
-from sklearn import svm
-from Proper_Analysis.helpers import regression_results
 from Proper_Analysis.reading_data import model_names, df
 
 
-def regression_with_herBERT(n, x_string, y_string, offset, kernel):
+def regression_results(answers, results, off_set):
+    predicted = 0
+    failed = 0
+    overall_off_by = 0
+    for score, prediction in zip(answers, results):
+        score = int(score)
+        if score - off_set < prediction < score + off_set:
+            print(f'PREDICTED')
+            predicted += 1
+        else:
+            print('FAILED')
+            failed += 1
+        print(f'Prediction: {round(prediction, 2)}, Real score: {score}')
+        off_by = score - prediction
+        print(f'Off by {off_by}')
+        print('\n')
+        overall_off_by += abs(off_by)
+
+    success_rate = predicted / (predicted + failed) * 100
+    print(f'Predicted: {predicted}')
+    print(f'Failed: {failed}')
+    print(f'Success rate: {success_rate}')
+    print(f'Overall off by: {overall_off_by}')
+
+    efficiency_dict = {
+        'Success rate': success_rate,
+        'Overall off by': overall_off_by
+    }
+    return efficiency_dict
+
+
+def regression_with_herBERT(n, x_string, y_string, offset, SVR_setup):
     tokenizer = AutoTokenizer.from_pretrained(model_names["herbert-base-cased"]["tokenizer"])
     nlp = AutoModel.from_pretrained(model_names["herbert-base-cased"]["model"])
     
@@ -21,10 +50,13 @@ def regression_with_herBERT(n, x_string, y_string, offset, kernel):
     train_y = df[y_string][n:]
     test_x = all_x_2d[:n]
     
-    clf_svm_wv = svm.SVR(kernel=kernel)
+    clf_svm_wv = SVR_setup
     clf_svm_wv.fit(train_x, train_y)
     
     result = clf_svm_wv.predict(test_x)
-    
+
+    print(f'{x_string}/{y_string}\n{SVR_setup}')
     efficiency_dict = regression_results(df[y_string][:n], result, offset)
+    print(f'{x_string}/{y_string}\n{SVR_setup}\n\n')
+
     return efficiency_dict

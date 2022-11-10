@@ -10,10 +10,11 @@ train_x_word_vectors = [x.vector for x in docs]
 clf_svm_wv = svm.SVC(kernel='linear')
 clf_svm_wv.fit(train_x_word_vectors, train_y)
 
-test_x = [
+test_x = ['Everybody makes mistakes. Everybody has those days.', "How many of these are just horrible mistakes I made? I mean, maybe I'd stop making so many if I let myself learn from them.",
+          "Good instincts are earned by making mistakes.", "“The future is scary, but you can’t just run back to the past because it’s familiar. Yes it’s tempting, but it’s a mistake.”"
           ]
 
-test_x_answers = []
+test_x_answers = [1, 1, 1, 1]
 
 for i in range(len(test_x_answers)):
     if test_x_answers[i] == 1:

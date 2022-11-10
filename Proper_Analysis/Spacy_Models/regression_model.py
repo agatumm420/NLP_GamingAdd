@@ -4,7 +4,7 @@ from Proper_Analysis.helpers import regression_results
 from Proper_Analysis.reading_data import df
 
 
-def regression_with_spaCy(n, x_string, y_string, offset, kernel):
+def regression_with_spaCy(n, x_string, y_string, offset, SVR_setup):
     train_x = df[x_string][n:]
     train_y = df[y_string][n:]
 
@@ -13,7 +13,7 @@ def regression_with_spaCy(n, x_string, y_string, offset, kernel):
     docs = [nlp(text) for text in train_x]
     train_x_word_vectors = [x.vector for x in docs]
 
-    clf_svm_wv = svm.SVR(kernel=kernel)
+    clf_svm_wv = SVR_setup
     clf_svm_wv.fit(train_x_word_vectors, train_y)
 
     test_x = df[x_string][:n]

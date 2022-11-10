@@ -1,13 +1,29 @@
 import warnings
 import pandas as pd
 import os
+from sklearn import preprocessing
 
-from Proper_Analysis.helpers import connect_answers, normalize_dataset
+def connect_answers(column, *args):
+    for i in range(len(column)):
+        i = i + 1
+        text = ''
+        for arg in args:
+            if arg[i][-1] != '.':
+                text += f'{arg[i]}. '
+            else:
+                text += f'{arg[i]} '
+        column[i] = text
+
+
+def normalize_dataset(column):
+    normalized_column = preprocessing.normalize([column])
+    return normalized_column[0]
+
 
 path = 'C:\\Users\\Lenovo\\Desktop\\GDT_NLP_Analysis'
 os.chdir(path)
-
 warnings.simplefilter("ignore")
+
 file_name = 'GDT_data.xlsx'
 df = pd.read_excel(io=file_name)
 
