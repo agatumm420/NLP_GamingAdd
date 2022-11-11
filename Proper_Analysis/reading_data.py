@@ -1,7 +1,9 @@
 import warnings
 import pandas as pd
 import os
+from matplotlib import pyplot as plt
 from sklearn import preprocessing
+
 
 def connect_answers(column, *args):
     for i in range(len(column)):
@@ -49,6 +51,7 @@ connect_answers(df['NLP_gaming'], df['NLP_2'], df['NLP_3'], df['NLP_4'])
 connect_answers(df['NLP_well_being'], df['NLP_1'], df['NLP_2'])
 
 df['GDT_normalized'] = normalize_dataset(df['GDT_score'])
+
 
 model_names = {
     "herbert-klej-cased-v1": {

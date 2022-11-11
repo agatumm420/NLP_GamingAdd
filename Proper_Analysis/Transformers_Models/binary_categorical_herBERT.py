@@ -7,7 +7,7 @@ from Proper_Analysis.reading_data import df, model_names
 N = 20
 X_STRING = 'NLP_gaming'
 Y_STRING = 'GDT_score'
-THRESHOLD = 8
+THRESHOLD = 11
 
 
 class Category:

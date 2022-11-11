@@ -46,31 +46,43 @@ def categorize(arr, thresh_hold):
     return categorized_list
 
 
-def run_test_loops(file_name, n, x_list, y_list, offset, svr_setup):
+def run_test_loops(file_name, n, x_list, y_list, offset, svr_setup, functions):
     df_x = []
     df_y = []
     df_svr = []
+    df_func = []
     df_success = []
     df_off_by = []
+    df_sd_data = []
+    df_sd_prediction = []
 
     for i_1 in range(len(x_list)):
         for i_2 in range(len(y_list)):
             for i_3 in range(len(svr_setup)):
-                result_bert = regression_with_herBERT(n, x_list[i_1], y_list[i_2], offset, svr_setup[i_3])
+                for i_4 in range(len(functions)):
+                    result_bert = functions[i_4](n, x_list[i_1], y_list[i_2], offset, svr_setup[i_3])
 
-                df_x.append(x_list[i_1])
-                df_y.append(y_list[i_2])
-                df_svr.append(svr_setup[i_3])
-                df_success.append(result_bert['Success rate'])
-                df_off_by.append(result_bert['Overall off by'])
+                    df_x.append(x_list[i_1])
+                    df_y.append(y_list[i_2])
+                    df_svr.append(svr_setup[i_3])
+                    df_func.append(functions[i_4])
+                    df_success.append(result_bert['Success rate'])
+                    df_off_by.append(result_bert['Overall off by'] / n)
+                    df_sd_data.append(result_bert['SD data'])
+                    df_sd_prediction.append(result_bert['SD predictions'])
 
     df_dict = {
         'x': df_x,
         'y': df_y,
         'svr': df_svr,
+        'func': df_func,
         'success%': df_success,
-        'off_by': df_off_by
+        'off_by': df_off_by,
+        'SD data': df_sd_data,
+        'SD prediction': df_sd_prediction
     }
 
     final_df = pd.DataFrame(df_dict)
+
+    file_name += '.xlsx'
     final_df.to_excel(file_name)
