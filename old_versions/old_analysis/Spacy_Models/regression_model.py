@@ -1,7 +1,6 @@
 import spacy
-from sklearn import svm
-from Proper_Analysis.helpers import regression_results
-from Proper_Analysis.reading_data import df
+from old_versions.Proper_Analysis.helpers import regression_results
+from old_versions.Proper_Analysis.reading_data.reading_pilot_data import df
 
 
 def regression_with_spaCy(n, x_string, y_string, offset, SVR_setup):

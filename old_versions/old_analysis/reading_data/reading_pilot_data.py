@@ -22,7 +22,7 @@ def normalize_dataset(column):
     return normalized_column[0]
 
 
-path = 'C:\\Users\\Lenovo\\Desktop\\GDT_NLP_Analysis'
+path = '/'
 os.chdir(path)
 warnings.simplefilter("ignore")
 

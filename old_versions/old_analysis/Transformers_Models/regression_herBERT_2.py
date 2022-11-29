@@ -1,7 +1,7 @@
 from sklearn.pipeline import Pipeline
 from transformers import AutoTokenizer, AutoModel
-from Proper_Analysis.Transformers_Models.helpers import BertTransformer, regression_results
-from Proper_Analysis.reading_data import model_names, df
+from old_versions.Proper_Analysis.Transformers_Models.helpers import BertTransformer, regression_results
+from old_versions.Proper_Analysis.reading_data.reading_final_data import model_names, df
 
 
 def regression_with_herBERT_2(n, x_string, y_string, offset, SVR_setup):
@@ -16,10 +16,12 @@ def regression_with_herBERT_2(n, x_string, y_string, offset, SVR_setup):
         ]
     )
 
-    train_x = df[x_string][n:]
-    train_y = df[y_string][n:]
-    test_x = df[x_string][:n]
-    result_y = df[y_string][:n]
+    proper_df = df[~df[x_string].isnull()]
+
+    train_x = proper_df[x_string][n:]
+    train_y = proper_df[y_string][n:]
+    test_x = proper_df[x_string][:n]
+    result_y = proper_df[y_string][:n]
 
     model.fit(train_x, train_y)
     result = model.predict(test_x)

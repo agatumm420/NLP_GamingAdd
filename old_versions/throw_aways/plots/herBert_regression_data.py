@@ -1,7 +1,7 @@
 import numpy as np
 from transformers import AutoTokenizer, AutoModel
 from sklearn import svm
-from Proper_Analysis.reading_data import model_names, df
+from old_versions.Proper_Analysis.reading_data.reading_pilot_data import model_names, df
 
 N = 20
 X_STRING = 'NLP_all'

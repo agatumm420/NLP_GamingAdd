@@ -1,5 +1,4 @@
 import pandas as pd
-from Proper_Analysis.Transformers_Models.regression_herBERT import regression_with_herBERT
 
 
 def print_categorical_results(answers, results, real_score, thresh_hold):

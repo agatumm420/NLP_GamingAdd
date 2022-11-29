@@ -1,7 +1,7 @@
 import spacy
 from sklearn import svm
-from Proper_Analysis.helpers import categorize, print_categorical_results
-from Proper_Analysis.reading_data import df
+from old_versions.Proper_Analysis.helpers import categorize, print_categorical_results
+from old_versions.Proper_Analysis.reading_data.reading_pilot_data import df
 
 N = 16
 X_STRING = 'NLP_6'

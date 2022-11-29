@@ -1,14 +1,17 @@
 import numpy as np
 from transformers import AutoTokenizer, AutoModel
-from Proper_Analysis.Transformers_Models.helpers import regression_results
-from Proper_Analysis.reading_data import model_names, df
+from old_versions.Proper_Analysis.Transformers_Models.helpers import regression_results
+from old_versions.Proper_Analysis.reading_data.reading_final_data import model_names, df
 
 
 def regression_with_herBERT(n, x_string, y_string, offset, SVR_setup):
+
+    proper_df = df[~df[x_string].isnull()]
+
     tokenizer = AutoTokenizer.from_pretrained(model_names["herbert-base-cased"]["tokenizer"])
     nlp = AutoModel.from_pretrained(model_names["herbert-base-cased"]["model"])
     
-    docs = [nlp(**tokenizer.batch_encode_plus(list(df[x_string]), padding="longest",
+    docs = [nlp(**tokenizer.batch_encode_plus(list(proper_df[x_string]), padding="longest",
                                               add_special_tokens=True,
                                               return_tensors="pt", ))]
     
@@ -17,9 +20,9 @@ def regression_with_herBERT(n, x_string, y_string, offset, SVR_setup):
     all_x_2d = all_x.reshape(num, x1 * x2)
     
     train_x = all_x_2d[n:]
-    train_y = df[y_string][n:]
+    train_y = proper_df[y_string][n:]
     test_x = all_x_2d[:n]
-    result_y = df[y_string][:n]
+    result_y = proper_df[y_string][:n]
 
     clf_svm_wv = SVR_setup
     clf_svm_wv.fit(train_x, train_y)

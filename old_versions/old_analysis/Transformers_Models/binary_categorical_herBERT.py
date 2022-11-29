@@ -1,13 +1,13 @@
 import numpy as np
 from transformers import AutoTokenizer, AutoModel
 from sklearn import svm
-from Proper_Analysis.helpers import print_categorical_results, categorize
-from Proper_Analysis.reading_data import df, model_names
+from old_versions.Proper_Analysis.helpers import print_categorical_results, categorize
+from old_versions.Proper_Analysis.reading_data.reading_final_data import df, model_names
 
-N = 20
-X_STRING = 'NLP_gaming'
+N = 100
+X_STRING = 'nlp_2'
 Y_STRING = 'GDT_score'
-THRESHOLD = 11
+THRESHOLD = 12
 
 
 class Category:

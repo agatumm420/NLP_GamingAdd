@@ -1,9 +1,7 @@
 from simpletransformers.classification import ClassificationModel, ClassificationArgs
 import pandas as pd
-import logging
 from sklearn.model_selection import train_test_split
-from Proper_Analysis.reading_data import df
-from sklearn.metrics import accuracy_score
+from old_versions.Proper_Analysis.reading_data.reading_pilot_data import df
 
 N = 16
 X_STRING = 'NLP_2'
