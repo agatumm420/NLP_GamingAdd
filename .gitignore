@@ -5,6 +5,9 @@ __pycache__/
 
 # C extensions
 *.so
+NLP_CONNECTED.xlsx
+NLP_CLEAN.xlsx
+NLP_PILOT.xlsx
 
 # Distribution / packaging
 .Python
