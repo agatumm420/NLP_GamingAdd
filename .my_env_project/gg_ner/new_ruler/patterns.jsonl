@@ -2,10 +2,15 @@
 {"label":"GAMER","pattern":"level"}
 {"label":"GAMER","pattern":"levele"}
 {"label":"GAMER","pattern":"levelu"}
-{"label":"GAMER","pattern":"PvE, player versus environment"}
+{"label":"GAMER","pattern":"funu"}
+{"label":"GAMER","pattern":"fun"}
+{"label":"GAMER","pattern":"dla funu"}
+{"label":"GAMER","pattern":"PvE"}
+{"label":"GAMER","pattern":"player versus environment"}
 {"label":"GAMER","pattern":"IDC"}
 {"label":"GAMER","pattern":"Ai"}
 {"label":"GAMER","pattern":"Artificial Intelligence"}
+{"label":"GAMER","pattern":"player"}
 {"label":"GAMER","pattern":"Melee"}
 {"label":"GAMER","pattern":"Hardware"}
 {"label":"GAMER","pattern":"Battle royale "}
