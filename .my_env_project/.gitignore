@@ -5,5 +5,5 @@ share/
 NLP_CONNECTED.xlsx
 NLP_CLEAN.xlsx
 NLP_PILOT.xlsx
-.env
+../.env
 

@@ -8,7 +8,7 @@ __pycache__/
 NLP_CONNECTED.xlsx
 NLP_CLEAN.xlsx
 NLP_PILOT.xlsx
-.env
+.my_env_project/.env
 # Distribution / packaging
 .Python
 build/
@@ -108,7 +108,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+.my_env_project/.env
 .venv
 env/
 venv/
